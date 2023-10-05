@@ -1,3 +1,5 @@
+const telegramBot = '@spacegametestbot';
+
 // Header
 const header = document.getElementById('header');
 
