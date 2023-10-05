@@ -23,19 +23,20 @@ menuBtn.addEventListener('click', (e) => {
 
 // request
 const request = (urlencoded) => {
+    const url = 'https://n8n.solowey.ru/webhook/2639b53b-c7fa-493b-9b69-f74aad2dfb9e';
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+    myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     var requestOptions = {
         method: 'POST',
         headers: myHeaders,
         body: urlencoded,
         redirect: 'follow'
     };
-    fetch("https://n8n.solowey.ru/webhook/2639b53b-c7fa-493b-9b69-f74aad2dfb9e", requestOptions)
+    fetch(url, requestOptions)
     .then(response => response.json())
     .then(result => {
         console.log(result)
-        document.getElementById('debug-id').innerHTML = result.id;
+        document.getElementById('debug-id').innerHTML = result.telegram_id;
         if (result.hasOwnProperty('code') && result.code === 0) {
             if (result.message === 'No item to return got found') {
                 // отправить пользователю экран регистрации
