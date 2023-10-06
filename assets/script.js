@@ -1,4 +1,6 @@
 const telegramBot = '@spacegametestbot';
+let telegramId;
+
 const message = [
     {
         name: 'check',
@@ -30,18 +32,6 @@ const message = [
         ]
     }
 ];
-let telegramId;
-
-const setSize = () => {
-    const size = Math.round(window.innerWidth / 375 * 1000) / 1000;
-    document.body.style.setProperty('--size', size);
-}
-
-window.addEventListener('resize', (e) => {
-    setSize();
-})
-setSize();
-
 const getMessage = (name, type, n = 0) => {
     const messageItem = message.find(item => item.name === name);    
     if (messageItem) {
@@ -53,35 +43,32 @@ const getMessage = (name, type, n = 0) => {
         }
     }
     return 'Произошла неизвестная ошибка';
-}  
+}
 
+const setSize = () => {
+    const size = Math.round(window.innerWidth / 375 * 1000) / 1000;
+    document.body.style.setProperty('--size', size);
+}
+setSize();
+
+// Set variables
 // Header
 const header = document.getElementById('header');
-
-// Menu button
+// Menu
 const menu = document.getElementById('menu');
 const menuBtn = header.querySelector('.menu-icons');
 const menuBtnOpen = menuBtn.querySelector('.menu-open');
 const menuBtnClose = menuBtn.querySelector('.menu-close');
+// Screens
 const screenStart = document.getElementById('start');
 const screenSignup = document.getElementById('signup');
 const screenMap = document.getElementById('map');
+const levelInfo = document.getElementById('level-info');
+// Buttons
 const startBtn = document.getElementById('start-button');
 const signupBtn = document.getElementById('signup-button');
-const levelBtns = document.querySelectorAll('.levels div');
-const inputTelegram = document.querySelector('[name="telegram_id"]');
-
-menuBtn.addEventListener('click', (e) => {
-    if (menu.classList.contains('shown')) {
-        menu.classList.remove('shown');
-        menuBtnOpen.classList.remove('hide');
-        menuBtnClose.classList.add('hide');
-    } else {
-        menu.classList.add('shown');
-        menuBtnOpen.classList.add('hide');
-        menuBtnClose.classList.remove('hide');
-    }
-});
+const levelBtns = document.querySelectorAll('.map-level-numbers');
+const levelInfoBtnClose = levelInfo.querySelector('.cross');
 
 const toast = (type, text = '') => {
     const element = document.getElementById('toast');
@@ -92,38 +79,7 @@ const toast = (type, text = '') => {
     setTimeout(() => {element.classList.remove('shown')}, 2500);
 }
 
-signupBtn.addEventListener('click', (e) => {
-    e.target.classList.add('disabled');
-    const form = e.target.parentNode.querySelector('form');
-    const inputs = form.querySelectorAll('input');
-    inputs.forEach(input => {
-        input.classList.remove('error');
-        input.value === '' ? input.classList.add('error') : input.classList.remove('error');
-    });
-    const email = form.querySelector('[name="email"]').value;
-    const fullname = form.querySelector('[name="fullname"]').value;
-    const specialization = form.querySelector('[name="specialization"]').value;
-    const validateEmail = (email) => {
-        return /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i.test(email);
-    }
-    if (email === '' || fullname === '' || specialization === '') {
-        toast('error', getMessage('signup', 'error', 1));
-        e.target.classList.remove('disabled');
-    } else if (!validateEmail(email)) {
-        inputs[0].classList.add('error');
-        toast('error', getMessage('signup', 'error', 2));
-        e.target.classList.remove('disabled');
-    } else {
-        const urlencoded = new URLSearchParams();
-        urlencoded.append('email', email.toLowerCase());
-        urlencoded.append('fullname', fullname);
-        urlencoded.append('specialization', specialization);
-        request('signup', urlencoded);
-    }
-
-});
-
-// request
+// Request
 const request = (method, urlencoded) => {
     const url = 'https://n8n.solowey.ru/webhook/2639b53b-c7fa-493b-9b69-f74aad2dfb9e';
     const myHeaders = new Headers();
@@ -157,7 +113,7 @@ const request = (method, urlencoded) => {
                 setMap();
             }, 1000);
         } else if (method === 'map') {
-            // const levels = screenMap.querySelector('.levels div');
+            // const levels = screenMap.querySelectorAll('.map-level-number');
             // levels.forEach(level => {
             //     // result.
             // });
@@ -193,12 +149,23 @@ const setMap = () => {
     document.dispatchEvent(new Event('map'));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // setMap();
-});
-
 // Button listeners
-startBtn.addEventListener('click', (e) => {
+// Menu
+const menuBtnCallback = (e) => {
+    if (menu.classList.contains('shown')) {
+        menu.classList.remove('shown');
+        menuBtnOpen.classList.remove('hide');
+        menuBtnClose.classList.add('hide');
+    } else {
+        menu.classList.add('shown');
+        menuBtnOpen.classList.add('hide');
+        menuBtnClose.classList.remove('hide');
+    }
+}
+menuBtn.addEventListener('click', menuBtnCallback);
+
+// Start button
+const startBtnCallback = (e) => {
     if (e.target.hash === '#signup') {
         screenStart.classList.add('hide');
         screenSignup.classList.remove('hide');
@@ -207,13 +174,85 @@ startBtn.addEventListener('click', (e) => {
         screenStart.classList.add('hide');
         screenMap.classList.remove('hide');
     }
+}
+startBtn.addEventListener('click', startBtnCallback);
+
+// Signup
+const signupBtnCallback = (e) => {
+    e.target.classList.add('disabled');
+    const form = e.target.parentNode.querySelector('form');
+    const inputs = form.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.classList.remove('error');
+        input.value === '' ? input.classList.add('error') : input.classList.remove('error');
+    });
+    const email = form.querySelector('[name="email"]').value;
+    const fullname = form.querySelector('[name="fullname"]').value;
+    const specialization = form.querySelector('[name="specialization"]').value;
+    const validateEmail = (email) => {
+        return /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i.test(email);
+    }
+    if (email === '' || fullname === '' || specialization === '') {
+        toast('error', getMessage('signup', 'error', 1));
+        e.target.classList.remove('disabled');
+    } else if (!validateEmail(email)) {
+        inputs[0].classList.add('error');
+        toast('error', getMessage('signup', 'error', 2));
+        e.target.classList.remove('disabled');
+    } else {
+        const urlencoded = new URLSearchParams();
+        urlencoded.append('email', email.toLowerCase());
+        urlencoded.append('fullname', fullname);
+        urlencoded.append('specialization', specialization);
+        request('signup', urlencoded);
+    }
+}
+signupBtn.addEventListener('click', signupBtnCallback);
+
+// Level button
+const levelBtnCallback = (e) => {
+    const levelNumber = levelInfo.querySelector('.level-number');
+    levelNumber.innerHTML = e.target.innerHTML;
+    levelInfo.classList.remove('hide');
+    sb.updateOptions({
+        vievport: levelInfo.querySelector('.level-descr'),
+        // shouldScroll: (state, event) => { return false }
+    });
+}
+levelBtns.forEach(levelBtn => {
+    levelBtn.addEventListener('click', levelBtnCallback);
+    levelBtn.addEventListener('touchstart', levelBtnCallback);
 });
 
-levelBtns.forEach(levelBtn => {
-    levelBtn.addEventListener('click', (e) => {
-        const levelInfo = document.getElementById('level-info');
-        const levelNumber = levelInfo.querySelector('.level-number');
-        levelNumber.innerHTML = e.target.innerHTML;
-        levelInfo.classList.remove('hide');
+// Level-info
+const levelInfoBtnCloseCallback = (e) => {
+    levelInfo.classList.add('hide');
+    sb.updateOptions({
+        vievport: levelInfo.querySelector('.map'),
+        // shouldScroll: (state, event) => { return true }
     });
+}
+levelInfoBtnClose.addEventListener('click', levelInfoBtnCloseCallback);
+
+// Other listeners
+// Resize
+window.addEventListener('resize', (e) => {
+    setSize();
+})
+
+// Map
+const screenMapCallback = (e) => {
+    if (e.target === screenMap || e.target.classList.contains('map-level-numbers')) {
+        levelInfo.classList.add('hide');
+        sb.updateOptions({
+            vievport: levelInfo.querySelector('.map'),
+            // shouldScroll: (state, event) => { return true }
+        });
+    }
+}
+screenMap.addEventListener('click', screenMapCallback);
+
+// DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    // setMap();
 });
