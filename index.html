@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link href="assets/font/Magistral/stylesheet.css" rel="stylesheet">
+    <link href="assets/font/stylesheet.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
@@ -27,22 +27,107 @@
                 <a href="https://t.me/necodim_ru" class="button small">наш телеграм-канал</a>
             </div>
         </div>
-        <div id="spb">
-            <div id="background">
-
+        <div id="toast"></div>
+        <div id="background">
+            <div class="background-ref"></div>
+            <!-- <div class="background-element stars"></div>
+            <div class="background-element clouds">
+                <img src="assets/images/cloud-1.png" alt="Облако" class="cloud cloud-1">
+                <img src="assets/images/cloud-2.png" alt="Облако" class="cloud cloud-2">
+                <img src="assets/images/cloud-3.png" alt="Облако" class="cloud cloud-3">
+                <img src="assets/images/cloud-4.png" alt="Облако" class="cloud cloud-4">
+                <img src="assets/images/cloud-5.png" alt="Облако" class="cloud cloud-5">
+                <img src="assets/images/cloud-6.png" alt="Облако" class="cloud cloud-6">
             </div>
-            <div id="noise"></div>
-            <div class="screen pbs-wrapper">
-                <div class="pbs-text">
+            <div class="background-element mountains">
+                <div class="mountain">
+                    <img src="assets/images/mountain-1.png" alt="Гора" class="mountain-1">
+                    <div class="mountain-1"></div>
+                </div>
+                <div class="mountain"><img src="assets/images/mountain-2.png" alt="Гора" class="mountain mountain-2"></div>
+                <div class="mountain"><img src="assets/images/mountain-3.png" alt="Гора" class="mountain mountain-3"></div>
+                <div class="mountain"><img src="assets/images/mountain-4.png" alt="Гора" class="mountain mountain-4"></div>
+                <div class="mountain"><img src="assets/images/mountain-5.png" alt="Гора" class="mountain mountain-5"></div>
+                <div class="mountain"><img src="assets/images/mountain-6.png" alt="Гора" class="mountain mountain-6"></div>
+            </div>
+            <div class="background-element loading-dots">
+                <img src="assets/images/loading-dots-1.png" alt="Загрузка" class="loading-dot loading-dot-1">
+                <img src="assets/images/loading-dots-2.png" alt="Загрузка" class="loading-dot loading-dot-2">
+                <img src="assets/images/loading-dots-3.png" alt="Загрузка" class="loading-dot loading-dot-3">
+                <img src="assets/images/loading-dots-4.png" alt="Загрузка" class="loading-dot loading-dot-4">
+            </div> -->
+        </div>
+        <div id="noise"></div>
+        <div id="start">
+            <div class="screen start-wrapper">
+                <div class="start-text center">
                     <h1>Путь к вершине кибербезопасности</h1>
                     <p>Тебя ждут 10 уровней, где ты сможешь показать свои знания в области ИБ ;)</p>
                 </div>
-                <a href="#start" class="button">играть</a>
+                <a href="#start" id="start-button" class="button">играть</a>
             </div>
 
+        </div>
+        <div id="signup" class="hide">
+            <div class="screen signup-wrapper">
+                <p class="above-form">Какой-то текст про то, зачем регаться в несколько строк</p>
+                <div class="form-wrapper">
+                    <form class="inputs-wrapper">
+                        <input type="text" name="email" placeholder="E-mail адрес" autocomplete="on" inputmode="email" required>
+                        <input type="text" name="fullname" placeholder="ФИО" required>
+                        <input type="text" name="specialization" placeholder="Специализация" required>
+                    </form>
+                    <a href="#send" id="signup-button" class="button">отправить</a>
+                    <p class="below-form">Нажимая «Отправить» даю согласие на обработку персональных данных в соответствии с «Политикой» и на получение информационной рассылки K2K</p>
+                </div>
+            </div>
+        </div>
+        <div id="map" class="hide">
+            <div class="map">
+                <img src="assets/images/map.png" alt="Карта игры">
+                <div class="levels">
+                    <div id="level-1">01</div>
+                    <div id="level-2">02</div>
+                    <div id="level-3">03</div>
+                    <div id="level-4">04</div>
+                    <div id="level-5">05</div>
+                    <div id="level-6">06</div>
+                    <div id="level-7">07</div>
+                    <div id="level-8">08</div>
+                    <div id="level-9">09</div>
+                    <div id="level-10">10</div>
+                </div>
+            </div>
+            <div id="level-info" class="hide">
+                <div class="level-info-wrapper">
+                    <div class="level-info-text-wrapper">
+                        <div class="level-number-wrapepr">
+                            <div class="circles">
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                            </div>
+                            <div class="level-number">01</div>
+                        </div>
+                        <div class="level-title">Консалтинг ИБ</div>
+                        <div class="level-descr">
+                            <div class="above-descr"></div>
+                            <p>Сейчас большинство компаний находятся под риском целенаправленных атак или уже пострадали от них.</p>
+                            <p>Возможно, у них есть филиалы, безопасность которых обеспечивается «на местах» без должного внимания. Через слабую защиту филиала увеличивается риск проникновения в периметр всей компании.</p>
+                            <p>Существует опасность развития атаки через устройства сотрудников при удаленном доступе. Обычные антивирусы не видят целенаправленные атаки или бессильны против них.</p>
+                            <p>Сейчас большинство компаний находятся под риском целенаправленных атак или уже пострадали от них.</p>
+                            <p>Возможно, у них есть филиалы, безопасность которых обеспечивается «на местах» без должного внимания. Через слабую защиту филиала увеличивается риск проникновения в периметр всей компании.</p>
+                            <p>Существует опасность развития атаки через устройства сотрудников при удаленном доступе. Обычные антивирусы не видят целенаправленные атаки или бессильны против них.</p>
+                            <div class="below-descr"></div>
+                        </div>
+                    </div>
+                    <a href="#play" id="play-button" class="button">играть</a>
+                </div>
+            </div>
         </div>
     </div>
 
     <script src="assets/script.js"></script>
+    <script src="https://unpkg.com/scrollbooster@2/dist/scrollbooster.min.js"></script>
+    <script src="assets/map.js"></script>
 </body>
 </html>
