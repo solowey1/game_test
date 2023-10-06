@@ -1,4 +1,4 @@
-const sb = new ScrollBooster({
+const scrollboosterOptions = {
     viewport: screenMap,
     content: screenMap.querySelector('.map'),
     scrollMode: 'transform',
@@ -8,7 +8,8 @@ const sb = new ScrollBooster({
     emulateScroll: true,
     lockScrollOnDragDirection: 'vertical',
     dragDirectionTolerance: 40
-});
+}
+const sb = new ScrollBooster(scrollboosterOptions);
 
 document.addEventListener('map', (e) => {
     setTimeout(() => {
