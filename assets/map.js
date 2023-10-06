@@ -4,7 +4,11 @@ const sb = new ScrollBooster({
     scrollMode: 'transform',
     direction: 'vertical',
     bounce: false,
-    friction: 0.3
+    friction: 0.3,
+    emulateScroll: true,
+    lockScrollOnDragDirection: 'vertical',
+    dragDirectionTolerance: 100,
+    
 });
 
 document.addEventListener('map', (e) => {
