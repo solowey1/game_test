@@ -126,6 +126,31 @@ p {
     margin: 0 0;
 }
 
+.cross {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+}
+   
+.cross::before, .cross::after {
+    content: '';
+    width: 120%;
+    height: 2px;
+    position: absolute;
+    top: 45%;
+    left: -10%;
+    background-color: var(--light);
+}
+   
+.cross::before {
+    transform: rotate(-45deg);
+}
+   
+.cross::after {
+    transform: rotate(45deg);
+}
+
 #game {
     /* display: flex;
     justify-content: center;
@@ -222,7 +247,7 @@ p {
     align-items: center;
     width: var(--width);
     height: 100vh;
-    height: 100lvh;
+    height: 100dvh;
     padding: 120px 0 40px;
     background-color: var(--dark);
     transition: all .3s ease-in-out;
@@ -332,7 +357,7 @@ p {
 /* Loading */
 #background {
     width: 100%;
-    height: 100%;
+    height: 100dvh;
     position: absolute;
     top: 0;
     left: 0;
@@ -346,7 +371,7 @@ p {
 
 .background-ref{
     width: 100%;
-    height: 100%;
+    height: 100dvh;
     position:absolute;
     left:50%;
     top:0;
@@ -550,6 +575,8 @@ p {
 }
 
 .signup-wrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -630,6 +657,7 @@ input:focus, input:focus-visible {
 }
 
 #map {
+    overflow: scroll;
     position: absolute;
     top: 0;
     left: 0;
@@ -655,7 +683,7 @@ input:focus, input:focus-visible {
     width: 100%;
 }
 
-.levels {
+.map-level-numbers {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -663,7 +691,7 @@ input:focus, input:focus-visible {
     left: 0;
 }
 
-.levels > * {
+.map-level-number {
     width: calc(100px * var(--size));
     height: calc(100px * var(--size));
     aspect-ratio: 1;
@@ -685,12 +713,12 @@ input:focus, input:focus-visible {
     cursor: pointer;
 }
 
-.levels > *.complete {
+.map-level-number.complete {
     color: var(--dark);
     background-color: var(--primary);
 }
 
-.levels > *.closed {
+.map-level-number.closed {
     color: var(--grey-1);
 }
 
@@ -770,6 +798,8 @@ input:focus, input:focus-visible {
     width: 100%;
     height: 100%;
     margin: 55px 5px 5px;
+    opacity: 1;
+    transition: all .3s ease-in-out;
 }
 
 @media screen and (min-width: 480px) {
@@ -796,6 +826,14 @@ input:focus, input:focus-visible {
     margin-bottom: 20px;
 }
 
+#level-info .level-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 15px;
+}
+
 #level-info .circle {
     width: 10px;
     height: 10px;
@@ -806,7 +844,6 @@ input:focus, input:focus-visible {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 15px;
 }
 
 #level-info .circles {
