@@ -217,10 +217,6 @@ const levelBtnCallback = (e) => {
     const levelNumber = levelInfo.querySelector('.level-number');
     levelNumber.innerHTML = e.target.innerHTML;
     levelInfo.classList.remove('hide');
-    sb.updateOptions({
-        vievport: levelInfo.querySelector('.level-descr'),
-        // shouldScroll: (state, event) => { return false }
-    });
 }
 levelBtns.forEach(levelBtn => {
     levelBtn.addEventListener('click', levelBtnCallback);
@@ -230,10 +226,6 @@ levelBtns.forEach(levelBtn => {
 // Level-info
 const levelInfoBtnCloseCallback = (e) => {
     levelInfo.classList.add('hide');
-    sb.updateOptions({
-        vievport: levelInfo.querySelector('.map'),
-        // shouldScroll: (state, event) => { return true }
-    });
 }
 levelInfoBtnClose.addEventListener('click', levelInfoBtnCloseCallback);
 
@@ -247,10 +239,6 @@ window.addEventListener('resize', (e) => {
 const screenMapCallback = (e) => {
     if (e.target === screenMap || e.target.classList.contains('map-level-numbers')) {
         levelInfo.classList.add('hide');
-        sb.updateOptions({
-            vievport: levelInfo.querySelector('.map'),
-            // shouldScroll: (state, event) => { return true }
-        });
     }
 }
 screenMap.addEventListener('click', screenMapCallback);
