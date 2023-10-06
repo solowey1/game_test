@@ -117,6 +117,10 @@ const request = (method, urlencoded) => {
             // levels.forEach(level => {
             //     // result.
             // });
+            screenStart.classList.add('hide');
+            screenSignup.classList.add('hide');
+            screenMap.classList.remove('hide');
+            document.dispatchEvent(new Event('map'));
         }
     })
     .catch(error => {
@@ -146,7 +150,6 @@ const setMap = () => {
     Math.ceil(window.innerWidth * 7.114);
     const urlencoded = new URLSearchParams();
     request('map', urlencoded);
-    document.dispatchEvent(new Event('map'));
 }
 
 // Button listeners
