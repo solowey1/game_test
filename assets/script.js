@@ -67,7 +67,7 @@ const levelInfo = document.getElementById('level-info');
 // Buttons
 const startBtn = document.getElementById('start-button');
 const signupBtn = document.getElementById('signup-button');
-const levelBtns = document.querySelectorAll('.map-level-numbers');
+const levelBtns = document.querySelectorAll('.map-level-number');
 const levelInfoBtnClose = levelInfo.querySelector('.cross');
 
 const toast = (type, text = '') => {
@@ -217,15 +217,16 @@ const levelBtnCallback = (e) => {
     const levelNumber = levelInfo.querySelector('.level-number');
     levelNumber.innerHTML = e.target.innerHTML;
     levelInfo.classList.remove('hide');
+    sb.destroy();
 }
 levelBtns.forEach(levelBtn => {
     levelBtn.addEventListener('click', levelBtnCallback);
-    levelBtn.addEventListener('touchstart', levelBtnCallback);
 });
 
 // Level-info
 const levelInfoBtnCloseCallback = (e) => {
     levelInfo.classList.add('hide');
+    sb = new ScrollBooster(scrollboosterOptions);
 }
 levelInfoBtnClose.addEventListener('click', levelInfoBtnCloseCallback);
 
@@ -239,6 +240,7 @@ window.addEventListener('resize', (e) => {
 const screenMapCallback = (e) => {
     if (e.target === screenMap || e.target.classList.contains('map-level-numbers')) {
         levelInfo.classList.add('hide');
+        sb = new ScrollBooster(scrollboosterOptions);
     }
 }
 screenMap.addEventListener('click', screenMapCallback);
