@@ -7,7 +7,7 @@ const sb = new ScrollBooster({
     friction: 0.3,
     emulateScroll: true,
     lockScrollOnDragDirection: 'vertical',
-    dragDirectionTolerance: 100,
+    dragDirectionTolerance: 20,
     
 });
 
