@@ -91,6 +91,26 @@ body {
     line-height: 100%;
 }
 
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
 h1 {
     color: var(--light);
     font-size: 28px;
@@ -132,8 +152,9 @@ p {
     position: relative;
     cursor: pointer;
 }
-   
-.cross::before, .cross::after {
+
+.cross::before,
+.cross::after {
     content: '';
     width: 120%;
     height: 2px;
@@ -142,11 +163,11 @@ p {
     left: -10%;
     background-color: var(--light);
 }
-   
+
 .cross::before {
     transform: rotate(-45deg);
 }
-   
+
 .cross::after {
     transform: rotate(45deg);
 }
@@ -178,7 +199,7 @@ p {
     background-color: var(--grey-2);
     border: none;
     border-radius: 100px;
-    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
     padding: 20px;
     margin: 0 auto;
 }
@@ -238,6 +259,7 @@ p {
     opacity: 1;
     transition: opacity .3s ease-in-out;
 }
+
 .menu-open div {
     width: 100%;
     height: 2px;
@@ -252,7 +274,8 @@ p {
     transition: opacity .3s ease-in-out;
 }
 
-.menu-close:before, .menu-close:after {
+.menu-close:before,
+.menu-close:after {
     content: ' ';
     position: absolute;
     top: 50%;
@@ -369,19 +392,19 @@ p {
     background-size: contain; */
 }
 
-.background-ref{
+.background-ref {
     width: 100%;
     height: 100dvh;
-    position:absolute;
-    left:50%;
-    top:0;
+    position: absolute;
+    left: 50%;
+    top: 0;
     transform: translateX(-50%);
     background-image: url('assets/images/level-ref.png');
     background-position: center center;
     background-repeat: no-repeat no-repeat;
     background-size: cover;
-    opacity:0.4;
-    opacity:1;
+    opacity: 0.4;
+    opacity: 1;
 }
 
 .background-element {
@@ -393,41 +416,23 @@ p {
     z-index: 0;
 }
 
-.background-element.stars {
+.background-element.stars {}
 
-}
+.background-element.clouds {}
 
-.background-element.clouds {
+.background-element.clouds .cloud {}
 
-}
+.background-element.clouds .cloud.cloud-1 {}
 
-.background-element.clouds .cloud {
+.background-element.clouds .cloud.cloud-2 {}
 
-}
+.background-element.clouds .cloud.cloud-3 {}
 
-.background-element.clouds .cloud.cloud-1 {
-    
-}
+.background-element.clouds .cloud.cloud-4 {}
 
-.background-element.clouds .cloud.cloud-2 {
-    
-}
+.background-element.clouds .cloud.cloud-5 {}
 
-.background-element.clouds .cloud.cloud-3 {
-    
-}
-
-.background-element.clouds .cloud.cloud-4 {
-    
-}
-
-.background-element.clouds .cloud.cloud-5 {
-    
-}
-
-.background-element.clouds .cloud.cloud-6 {
-    
-}
+.background-element.clouds .cloud.cloud-6 {}
 
 .background-element.mountains {
     width: 100%;
@@ -455,14 +460,31 @@ p {
     transform: translate(-50%, -50%);
 }
 
-.background-element.mountains .mountain:nth-child(1) {z-index: -1;}
-.background-element.mountains .mountain:nth-child(2) {z-index: -2;}
-.background-element.mountains .mountain:nth-child(3) {z-index: -3;}
-.background-element.mountains .mountain:nth-child(4) {z-index: -4;}
-.background-element.mountains .mountain:nth-child(5) {z-index: -5;}
-.background-element.mountains .mountain:nth-child(6) {z-index: -6;}
+.background-element.mountains .mountain:nth-child(1) {
+    z-index: -1;
+}
 
-.background-element.mountains .mountain > * {
+.background-element.mountains .mountain:nth-child(2) {
+    z-index: -2;
+}
+
+.background-element.mountains .mountain:nth-child(3) {
+    z-index: -3;
+}
+
+.background-element.mountains .mountain:nth-child(4) {
+    z-index: -4;
+}
+
+.background-element.mountains .mountain:nth-child(5) {
+    z-index: -5;
+}
+
+.background-element.mountains .mountain:nth-child(6) {
+    z-index: -6;
+}
+
+.background-element.mountains .mountain>* {
     position: relative;
     background-position: center center;
     background-repeat: no-repeat no-repeat;
@@ -487,41 +509,23 @@ p {
     left: 361px;
 }
 
-.background-element.mountains .mountain .mountain-3 {
+.background-element.mountains .mountain .mountain-3 {}
 
-}
+.background-element.mountains .mountain .mountain-4 {}
 
-.background-element.mountains .mountain .mountain-4 {
+.background-element.mountains .mountain .mountain-5 {}
 
-}
+.background-element.mountains .mountain.mountain-6 {}
 
-.background-element.mountains .mountain .mountain-5 {
+.background-element.loading-dots {}
 
-}
+.background-element.loading-dots .loading-dot.loading-dot-1 {}
 
-.background-element.mountains .mountain.mountain-6 {
+.background-element.loading-dots .loading-dot.loading-dot-2 {}
 
-}
+.background-element.loading-dots .loading-dot.loading-dot-3 {}
 
-.background-element.loading-dots {
-
-}
-
-.background-element.loading-dots .loading-dot.loading-dot-1 {
-    
-}
-
-.background-element.loading-dots .loading-dot.loading-dot-2 {
-    
-}
-
-.background-element.loading-dots .loading-dot.loading-dot-3 {
-    
-}
-
-.background-element.loading-dots .loading-dot.loading-dot-4 {
-    
-}
+.background-element.loading-dots .loading-dot.loading-dot-4 {}
 
 #noise {
     width: 100%;
@@ -633,7 +637,8 @@ input.error {
     border: 3px solid var(--purple);
 }
 
-input:focus, input:focus-visible {
+input:focus,
+input:focus-visible {
     border: none;
     box-shadow: none;
 }
@@ -657,7 +662,7 @@ input:focus, input:focus-visible {
 }
 
 #map {
-    /* overflow: scroll; */
+    overflow: scroll;
     position: absolute;
     top: 0;
     left: 0;
@@ -666,7 +671,7 @@ input:focus, input:focus-visible {
     height: 100%;
     margin: 0 0;
     background: linear-gradient(var(--dark) 0%, var(--dark) 40%, var(--purple) 60%, var(--purple) 100%)
-    /* background-image: url('assets/images/map.png');
+        /* background-image: url('assets/images/map.png');
     background-position: center center;
     background-repeat: no-repeat no-repeat;
     background-size: cover; */
@@ -720,6 +725,7 @@ input:focus, input:focus-visible {
 
 .map-level-number.closed {
     color: var(--grey-1);
+    cursor: default;
 }
 
 #level-1 {
@@ -792,12 +798,23 @@ input:focus, input:focus-visible {
     left: 24%;
 }
 
-#level-info {
+/* #level-info {
     position: relative;
     z-index: 200;
     width: 100%;
     height: 100%;
     margin: 55px 5px 5px;
+    opacity: 1;
+    transition: all .3s ease-in-out;
+} */
+
+#level-info {
+    position: fixed;
+    top: 55px;
+    left: 5px;
+    z-index: 200;
+    width: 100%;
+    height: 100%;
     opacity: 1;
     transition: all .3s ease-in-out;
 }
@@ -907,12 +924,14 @@ input:focus, input:focus-visible {
     margin-bottom: 0;
 }
 
-#level-info .above-descr, #level-info .below-descr {
+#level-info .above-descr,
+#level-info .below-descr {
     width: 100%;
     height: 30px;
     position: relative;
     z-index: 1;
 }
+
 #level-info .above-descr {
     background-image: linear-gradient(rgba(var(--dark-rgb), 1) 0%, rgba(var(--dark-rgb), 0) 100%);
     margin-bottom: -30px;
