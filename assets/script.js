@@ -237,13 +237,14 @@ window.addEventListener('resize', (e) => {
 })
 
 // Map
-const screenMapCallback = (e) => {
-    if (e.target === screenMap || e.target.classList.contains('map-level-numbers')) {
-        levelInfo.classList.add('hide');
-        sb = new ScrollBooster(scrollboosterOptions);
-    }
-}
-screenMap.addEventListener('click', screenMapCallback);
+// const screenMapCallback = (e) => {
+//     console.log(e)
+//     if (e.target === screenMap || e.target.classList.contains('map-level-numbers')) {
+//         levelInfo.classList.add('hide');
+//         sb = new ScrollBooster(scrollboosterOptions);
+//     }
+// }
+// screenMap.addEventListener('click', screenMapCallback);
 
 // DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
