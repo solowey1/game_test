@@ -7,8 +7,7 @@ const sb = new ScrollBooster({
     friction: 0.3,
     emulateScroll: true,
     lockScrollOnDragDirection: 'vertical',
-    dragDirectionTolerance: 20,
-    
+    dragDirectionTolerance: 40
 });
 
 document.addEventListener('map', (e) => {
