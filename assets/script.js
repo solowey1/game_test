@@ -67,7 +67,7 @@ const levelInfo = document.getElementById('level-info');
 // Buttons
 const startBtn = document.getElementById('start-button');
 const signupBtn = document.getElementById('signup-button');
-const levelBtns = document.querySelectorAll('.map-level-number');
+const mapLevelNumberBtns = document.querySelectorAll('.map-level-number');
 const levelInfoBtnClose = levelInfo.querySelector('.cross');
 
 const toast = (type, text = '') => {
@@ -113,13 +113,10 @@ const request = (method, urlencoded) => {
                 setMap();
             }, 1000);
         } else if (method === 'map') {
-            // const levels = screenMap.querySelectorAll('.map-level-number');
-            // levels.forEach(level => {
-            //     // result.
-            // });
-            screenStart.classList.add('hide');
-            screenSignup.classList.add('hide');
-            screenMap.classList.remove('hide');
+            const levels = screenMap.querySelectorAll('.map-level-number');
+            result.forEach(scoreObj => levels[scoreObj.level - 1].classList.add('complete'));
+            const levelsNotComplete = Array.from(levels).filter(level => !level.classList.contains('complete'))
+            for (let i = 1; i < levelsNotComplete.length; i++) levelsNotComplete[i].classList.add('closed');
             document.dispatchEvent(new Event('map'));
         }
     })
@@ -147,7 +144,6 @@ checkInBase(window.location.search);
 
 // Get scores and set map
 const setMap = () => {
-    Math.ceil(window.innerWidth * 7.114);
     const urlencoded = new URLSearchParams();
     request('map', urlencoded);
 }
@@ -165,7 +161,7 @@ const menuBtnCallback = (e) => {
         menuBtnClose.classList.remove('hide');
     }
 }
-menuBtn.addEventListener('click', menuBtnCallback);
+menuBtn.addEventListener('click', menuBtnCallback, true);
 
 // Start button
 const startBtnCallback = (e) => {
@@ -173,9 +169,8 @@ const startBtnCallback = (e) => {
         screenStart.classList.add('hide');
         screenSignup.classList.remove('hide');
     } else if (e.target.hash === '#start') {
+        e.target.classList.add('disabled');
         setMap();
-        screenStart.classList.add('hide');
-        screenMap.classList.remove('hide');
     }
 }
 startBtn.addEventListener('click', startBtnCallback);
@@ -213,20 +208,24 @@ const signupBtnCallback = (e) => {
 signupBtn.addEventListener('click', signupBtnCallback);
 
 // Level button
-const levelBtnCallback = (e) => {
-    const levelNumber = levelInfo.querySelector('.level-number');
-    levelNumber.innerHTML = e.target.innerHTML;
-    levelInfo.classList.remove('hide');
-    sb.destroy();
+const maplevelNumberBtnCallback = (e) => {
+    if (!e.target.classList.contains('closed')) {
+        const levelNumber = levelInfo.querySelector('.level-number');
+        levelNumber.innerHTML = e.target.innerHTML;
+        levelInfo.classList.remove('hide');
+        // sb.destroy();
+        lenis.stop();
+    }
 }
-levelBtns.forEach(levelBtn => {
-    levelBtn.addEventListener('click', levelBtnCallback);
+mapLevelNumberBtns.forEach(mapLevelNumberBtn => {
+    mapLevelNumberBtn.addEventListener('click', maplevelNumberBtnCallback);
 });
 
 // Level-info
 const levelInfoBtnCloseCallback = (e) => {
     levelInfo.classList.add('hide');
-    sb = new ScrollBooster(scrollboosterOptions);
+    // sb = new ScrollBooster(scrollboosterOptions);
+    lenis.start();
 }
 levelInfoBtnClose.addEventListener('click', levelInfoBtnCloseCallback);
 
@@ -234,6 +233,7 @@ levelInfoBtnClose.addEventListener('click', levelInfoBtnCloseCallback);
 // Resize
 window.addEventListener('resize', (e) => {
     setSize();
+    lenis.resize();
 })
 
 // Map
